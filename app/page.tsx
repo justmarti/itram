@@ -74,7 +74,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#111111] text-[#EEEEEE] font-mono overflow-hidden relative flex flex-col">
       <div className="flex-grow">
         {/* Fixed Logo - Solo visible en desktop */}
-        <div className="fixed top-6 left-6 z-50 md:absolute hidden lg:block">
+        <div className="fixed top-6 left-6 z-50 hidden lg:block">
           <PixelatedLogo />
         </div>
 
@@ -382,13 +382,22 @@ function PixelatedLogo({ size = "normal" }: { size?: "normal" | "small" }) {
         .fill(0)
         .map((_, i) => (
           <div
-            key={i}
-            className={`aspect-square transition-colors duration-300 cursor-pointer ${
-              hoveredPixel === i ? "bg-white" : pixels[i] || "bg-gray-600"
-            }`}
-            onMouseEnter={() => setHoveredPixel(i)}
-            onMouseLeave={() => setHoveredPixel(null)}
-          />
+  key={i}
+  className={`aspect-square transition-colors duration-100 cursor-pointer rounded ${
+    hoveredPixel === i
+      ? pixels[i] === "bg-gray-400"
+        ? "bg-gray-600"
+        : pixels[i] === "bg-gray-600"
+        ? "bg-gray-800"
+        : "bg-gray-400"
+      : pixels[i] || "bg-gray-600"
+  }`}
+  style={{
+    transitionTimingFunction: "ease-in-out"
+  }}
+  onMouseEnter={() => setHoveredPixel(i)}
+  onMouseLeave={() => setHoveredPixel(null)}
+/>
         ))}
     </div>
   )
