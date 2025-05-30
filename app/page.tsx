@@ -105,7 +105,7 @@ export default function Home() {
 
             {/* DOING Section */}
             <div className="mb-16">
-              <UppercaseText className="text-sm mb-3 text-[#777777]">doing</UppercaseText>
+              <UppercaseText className="text-sm mb-3 text-[#4D5562]">doing</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {doingItems.map((item, index) => (
                   <Item
@@ -121,7 +121,7 @@ export default function Home() {
 
             {/* DONE Section */}
             <div className="mb-16">
-              <UppercaseText className="text-sm mb-3 text-[#777777]">done</UppercaseText>
+              <UppercaseText className="text-sm mb-3 text-[#4D5562]">done</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {doneItems.map((item, index) => (
                   <Item
@@ -137,7 +137,7 @@ export default function Home() {
 
             {/* CONTACT Section */}
             <div className="mb-24">
-              <UppercaseText className="text-sm mb-3 text-[#777777]">contact</UppercaseText>
+              <UppercaseText className="text-sm mb-3 text-[#4D5562]">contact</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {contactItems.map((item, index) => (
                   <Item
@@ -155,7 +155,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className="text-center py-6 text-[#777777] text-xs">
+      <div className="text-center py-6 text-[#4D5562] text-xs">
         <UppercaseText>inspired by mds</UppercaseText>
       </div>
     </main>
@@ -286,26 +286,28 @@ function Item({
   index,
   isLast,
   forceAnimate = false,
-}: { 
-  item: { id: string; text: string; href: string }; 
-  index: number; 
-  isLast: boolean; 
-  forceAnimate?: boolean 
+}: {
+  item: { id: string; text: string; href: string }
+  index: number
+  isLast: boolean
+  forceAnimate?: boolean
 }) {
-  const [showArrow, setShowArrow] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const shouldAnimateText = forceAnimate || isHovered
+  const showArrow = isHovered
 
   return (
     <a
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center justify-between group cursor-pointer py-2 border-b border-[#222222] text-[#888888] hover:text-white transition-colors duration-300`}
-      onMouseEnter={() => setShowArrow(true)}
-      onMouseLeave={() => setShowArrow(false)}
+      className={`flex items-center justify-between group cursor-pointer py-2 border-b border-[#222222] text-[#9DA3AE] hover:text-white transition-colors duration-300`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex items-center gap-3">
         <UppercaseText className="text-sm font-mono">
-          <AnimatedText text={item.text} speed={8} forceAnimate={forceAnimate} />
+          <AnimatedText text={item.text} speed={8} forceAnimate={shouldAnimateText} />
         </UppercaseText>
       </div>
       <ArrowRight
