@@ -90,12 +90,12 @@ export default function Home() {
             {/* Header */}
             <div className="mb-16 pt-6 lg:pt-6 flex items-center lg:h-48">
               <div className="flex flex-col justify-center h-full w-full text-center lg:text-left">
-                <div className="text-4xl lg:text-6xl xl:text-7xl leading-none tracking-wide text-[#DDDDDD] mb-2 font-light">
+                <div className="text-4xl lg:text-6xl xl:text-7xl leading-none tracking-wide text-[#9DA3AE] mb-2 font-light">
                   <UppercaseText>
                     <AnimatedTitle text="itram" />
                   </UppercaseText>
                 </div>
-                <div className="text-lg lg:text-2xl xl:text-3xl leading-none tracking-wide text-[#777777] font-light">
+                <div className="text-lg lg:text-2xl xl:text-3xl leading-none tracking-wide text-[#4D5562] font-light">
                   <UppercaseText>ios developer</UppercaseText>
                 </div>
               </div>
