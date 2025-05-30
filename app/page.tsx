@@ -34,7 +34,11 @@ export default function Home() {
 
   // Random element animation effect
   useEffect(() => {
-    const allElements = ["neutral-news", "bookworm", "github-clone", "habit-tracker", "moonshot"]
+    const allElements = [
+      ...doingItems.map(item => item.id),
+      ...doneItems.map(item => item.id),
+      ...contactItems.map(item => item.id),
+    ]
 
     const randomAnimation = () => {
       const randomIndex = Math.floor(Math.random() * allElements.length)
@@ -60,25 +64,38 @@ export default function Home() {
     { id: "moonshot", text: "moonshot" },
   ]
 
+  const contactItems = [
+    { id: "github", text: "github", href: "https://github.com/martiespinosa" },
+    { id: "linkedin", text: "linkedin", href: "https://linkedin.com/in/marti-espinosa" },
+    { id: "x", text: "x", href: "https://x.com/pepeqint" },
+  ]
+
   return (
     <main className="min-h-screen bg-[#111111] text-[#EEEEEE] font-mono overflow-hidden relative flex flex-col">
       <div className="flex-grow">
-        {/* Fixed Logo */}
-        <div className="fixed top-6 left-6 z-50 md:absolute">
+        {/* Fixed Logo - Solo visible en desktop */}
+        <div className="fixed top-6 left-6 z-50 md:absolute hidden lg:block">
           <PixelatedLogo />
         </div>
 
-        <div className="p-6 md:p-12 pl-56 md:pl-60">
+        {/* Logo móvil - Solo visible cuando no hay espacio */}
+        <div className="block lg:hidden p-6 pb-0">
+          <div className="flex justify-center mb-8">
+            <PixelatedLogo size="small" />
+          </div>
+        </div>
+
+        <div className="p-6 md:p-12 lg:pl-60">
           <div className="max-w-full mx-auto">
             {/* Header */}
-            <div className="mb-16 pt-6 flex items-center h-48">
-              <div className="flex flex-col justify-center h-full">
-                <div className="text-6xl md:text-7xl leading-none tracking-wide text-[#EEEEEE] mb-2">
+            <div className="mb-16 pt-6 lg:pt-6 flex items-center lg:h-48">
+              <div className="flex flex-col justify-center h-full w-full text-center lg:text-left">
+                <div className="text-4xl lg:text-6xl xl:text-7xl leading-none tracking-wide text-[#DDDDDD] mb-2 font-light">
                   <UppercaseText>
                     <AnimatedTitle text="itram" />
                   </UppercaseText>
                 </div>
-                <div className="text-2xl md:text-3xl leading-none tracking-wide text-[#777777]">
+                <div className="text-lg lg:text-2xl xl:text-3xl leading-none tracking-wide text-[#777777] font-light">
                   <UppercaseText>ios developer</UppercaseText>
                 </div>
               </div>
@@ -101,7 +118,7 @@ export default function Home() {
             </div>
 
             {/* DONE Section */}
-            <div className="mb-24">
+            <div className="mb-16">
               <UppercaseText className="text-sm mb-3 text-[#777777]">done</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {doneItems.map((item, index) => (
@@ -115,12 +132,28 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* CONTACT Section */}
+            <div className="mb-24">
+              <UppercaseText className="text-sm mb-3 text-[#777777]">contact</UppercaseText>
+              <div className="flex flex-col border-t border-[#222222]">
+                {contactItems.map((item, index) => (
+                  <ContactItem
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    isLast={index === contactItems.length - 1}
+                    forceAnimate={randomElement === item.id}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 text-[#444444] text-xs">
+      <div className="text-center py-6 text-[#777777] text-xs">
         <UppercaseText>inspired by mds</UppercaseText>
       </div>
     </main>
@@ -272,7 +305,43 @@ function SectionItem({
   )
 }
 
-function PixelatedLogo() {
+function ContactItem({
+  item,
+  index,
+  isLast,
+  forceAnimate = false,
+}: { 
+  item: { id: string; text: string; href: string }; 
+  index: number; 
+  isLast: boolean; 
+  forceAnimate?: boolean 
+}) {
+  const [showArrow, setShowArrow] = useState(false)
+
+  return (
+    <a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`flex items-center justify-between group cursor-pointer py-2 border-b border-[#222222] text-[#888888] hover:text-white transition-colors duration-300`}
+      onMouseEnter={() => setShowArrow(true)}
+      onMouseLeave={() => setShowArrow(false)}
+    >
+      <div className="flex items-center gap-3">
+        <UppercaseText className="text-sm font-mono">
+          <AnimatedText text={item.text} speed={8} forceAnimate={forceAnimate} />
+        </UppercaseText>
+      </div>
+      <ArrowRight
+        className={`h-4 w-4 transform transition-all duration-300 ${
+          showArrow ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
+        }`}
+      />
+    </a>
+  )
+}
+
+function PixelatedLogo({ size = "normal" }: { size?: "normal" | "small" }) {
   const [pixels, setPixels] = useState<string[]>([])
   const [hoveredPixel, setHoveredPixel] = useState<number | null>(null)
 
@@ -304,8 +373,11 @@ function PixelatedLogo() {
     return () => clearInterval(interval)
   }, [])
 
+  const logoSize = size === "small" ? "w-32 h-32" : "w-48 h-48"
+  const gapSize = size === "small" ? "gap-0.5" : "gap-1"
+
   return (
-    <div className="w-48 h-48 grid grid-cols-8 grid-rows-8 gap-1 bg-[#111111] p-2 rounded-sm">
+    <div className={`${logoSize} grid grid-cols-8 grid-rows-8 ${gapSize} bg-[#111111] p-2 rounded-sm`}>
       {Array(64)
         .fill(0)
         .map((_, i) => (
