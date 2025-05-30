@@ -55,13 +55,15 @@ export default function Home() {
     return () => clearInterval(interval)
   }, [])
 
-  const doingItems = [{ id: "neutral-news", text: "neutral-news" }]
+  const doingItems = [
+    { id: "neutral-news", text: "neutral-news", href: "https://github.com/martiespinosa/neutral-news" },
+  ]
 
   const doneItems = [
-    { id: "bookworm", text: "bookworm" },
-    { id: "github-clone", text: "github-clone" },
-    { id: "habit-tracker", text: "habit-tracker" },
-    { id: "moonshot", text: "moonshot" },
+    { id: "bookworm", text: "bookworm", href: "https://github.com/martiespinosa/bookworm" },
+    { id: "github-clone", text: "github-clone", href: "https://github.com/martiespinosa/github-clone" },
+    { id: "habit-tracker", text: "habit-tracker", href: "https://github.com/martiespinosa/habit-tracker" },
+    { id: "moonshot", text: "moonshot", href: "https://github.com/martiespinosa/moonshot" },
   ]
 
   const contactItems = [
@@ -106,9 +108,9 @@ export default function Home() {
               <UppercaseText className="text-sm mb-3 text-[#777777]">doing</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {doingItems.map((item, index) => (
-                  <SectionItem
+                  <Item
                     key={item.id}
-                    item={item.text}
+                    item={item}
                     index={index}
                     isLast={index === doingItems.length - 1}
                     forceAnimate={randomElement === item.id}
@@ -122,9 +124,9 @@ export default function Home() {
               <UppercaseText className="text-sm mb-3 text-[#777777]">done</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {doneItems.map((item, index) => (
-                  <SectionItem
+                  <Item
                     key={item.id}
-                    item={item.text}
+                    item={item}
                     index={index}
                     isLast={index === doneItems.length - 1}
                     forceAnimate={randomElement === item.id}
@@ -138,7 +140,7 @@ export default function Home() {
               <UppercaseText className="text-sm mb-3 text-[#777777]">contact</UppercaseText>
               <div className="flex flex-col border-t border-[#222222]">
                 {contactItems.map((item, index) => (
-                  <ContactItem
+                  <Item
                     key={item.id}
                     item={item}
                     index={index}
@@ -279,33 +281,7 @@ function AnimatedText({
   )
 }
 
-function SectionItem({
-  item,
-  index,
-  isLast,
-  forceAnimate = false,
-}: { item: string; index: number; isLast: boolean; forceAnimate?: boolean }) {
-  const [showArrow, setShowArrow] = useState(false)
-
-  return (
-    <div
-      className={`flex items-center justify-between group cursor-pointer py-2 border-b border-[#222222] text-[#888888] hover:text-white transition-colors duration-300`}
-      onMouseEnter={() => setShowArrow(true)}
-      onMouseLeave={() => setShowArrow(false)}
-    >
-      <UppercaseText className="text-sm font-mono">
-        <AnimatedText text={item} speed={8} forceAnimate={forceAnimate} />
-      </UppercaseText>
-      <ArrowRight
-        className={`h-4 w-4 transform transition-all duration-300 ${
-          showArrow ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2"
-        }`}
-      />
-    </div>
-  )
-}
-
-function ContactItem({
+function Item({
   item,
   index,
   isLast,
@@ -347,7 +323,7 @@ function PixelatedLogo({ size = "normal" }: { size?: "normal" | "small" }) {
 
   useEffect(() => {
     // Initialize with random colors
-    const colors = ["bg-white", "bg-gray-300", "bg-gray-600"]
+    const colors = ["bg-gray-400", "bg-gray-600", "bg-gray-800"]
     const initialPixels = Array(64)
       .fill(0)
       .map(() => colors[Math.floor(Math.random() * colors.length)])
