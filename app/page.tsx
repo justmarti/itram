@@ -81,8 +81,8 @@ export default function Home() {
         </div>
 
         {/* Logo móvil - Solo visible cuando no hay espacio */}
-        <div className="block lg:hidden p-6 pb-0">
-          <div className="flex justify-center mb-8">
+        <div className="block lg:hidden p-6 pb-0 m-6 mb-0">
+          <div className="flex justify-center">
             <PixelatedLogo/>
           </div>
         </div>
