@@ -40,8 +40,8 @@ export default function Home() {
         </aside>
 
         {/* Logo móvil - Solo visible cuando no hay espacio */}
-        <header className="block lg:hidden p-6 pb-0 m-6 mb-0">
-          <PixelatedLogo/>
+        <header className="block lg:hidden flex justify-center items-center p-6 pb-0 m-6 mb-0">
+          <PixelatedLogo />
         </header>
 
         <section className="p-6 md:p-12 lg:pl-60">
