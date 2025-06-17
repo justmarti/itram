@@ -7,8 +7,8 @@ import { SITE_CONFIG } from '@/constants/config';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: SITE_CONFIG.name,
-    template: `%s | ${SITE_CONFIG.name}`,
+    default: SITE_CONFIG.name.toUpperCase(),
+    template: `%s | ${SITE_CONFIG.name.toUpperCase()}`,
   },
   description: SITE_CONFIG.description,
   icons: {
