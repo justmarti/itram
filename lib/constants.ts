@@ -10,6 +10,7 @@ export const doneItems = [
 ]
 
 export const contactItems = [
+  { id: "email", text: "email", href: "mailto:martiespinosa99@gmail.com" },
   { id: "github", text: "github", href: "https://github.com/martiespinosa" },
   { id: "linkedin", text: "linkedin", href: "https://linkedin.com/in/marti-espinosa" },
   { id: "x", text: "x", href: "https://x.com/pepeqint" },
