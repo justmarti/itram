@@ -6,6 +6,7 @@ interface ItemProps {
   item: {
     id: string
     text: string
+    description?: string
     href: string
   }
   index: number
@@ -30,6 +31,9 @@ export function Item({ item, index, isLast, forceAnimate = false }: ItemProps) {
       <div className="flex items-center gap-3">
         <div className="text-sm font-mono uppercase">
           <AnimatedText text={item.text} speed={8} forceAnimate={shouldAnimateText} />
+          {item.description && (
+            <small className="block text-[0.625rem] text-[#4D5562] uppercase mt-1">{item.description}</small>
+          )}
         </div>
       </div>
       <ArrowRight

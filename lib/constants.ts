@@ -9,6 +9,10 @@ export const doneItems = [
   { id: "moonshot", text: "moonshot", href: "https://github.com/martiespinosa/moonshot" },
 ]
 
+export const workedInItems = [
+  { id: "family-meal-planner", text: "family-meal-planner · inqbarna", description: "Social login, Localization, Dark mode", href: "https://apps.apple.com/es/app/family-meal-planner/id1620301321" },
+]
+
 export const contactItems = [
   { id: "email", text: "email", href: "mailto:martiespinosa99@gmail.com" },
   { id: "github", text: "github", href: "https://github.com/martiespinosa" },

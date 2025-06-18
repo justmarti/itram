@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { PixelatedLogo } from "@/components/common/Logo"
 import { AnimatedTitle } from "@/components/common/AnimatedTitle"
 import { ProjectSection } from "@/components/features/ProjectSection"
-import { doingItems, doneItems, contactItems } from "@/lib/constants"
+import { doingItems, doneItems, contactItems, workedInItems } from "@/lib/constants"
 
 export default function Home() {
   const [randomElement, setRandomElement] = useState<string | null>(null)
@@ -14,6 +14,7 @@ export default function Home() {
     const allElements = [
       ...doingItems.map(item => item.id),
       ...doneItems.map(item => item.id),
+      ...workedInItems.map(item => item.id),
       ...contactItems.map(item => item.id),
     ]
 
@@ -62,6 +63,7 @@ export default function Home() {
             <nav aria-label="Project sections">
               <ProjectSection title="doing" items={doingItems} randomElement={randomElement} />
               <ProjectSection title="done" items={doneItems} randomElement={randomElement} />
+              <ProjectSection title="worked in" items={workedInItems} randomElement={randomElement} />
               <ProjectSection title="contact" items={contactItems} randomElement={randomElement} />
             </nav>
           </div>
