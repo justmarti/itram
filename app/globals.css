@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 body {
-  font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Menlo", "Consolas", monospace;
   color: #eeeeee;
 }
 
@@ -18,7 +17,6 @@ body {
   body {
     background-color: #111111;
     color: #eeeeee;
-    font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Menlo", "Consolas", monospace;
   }
   * {
     box-sizing: border-box;

@@ -2,7 +2,14 @@ import type React from "react"
 import "./globals.css"
 import { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import { JetBrains_Mono } from 'next/font/google';
 import { SITE_CONFIG } from '@/constants/config';
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -92,7 +99,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Martí Espinosa",
+              "jobTitle": "iOS Developer",
+              "url": SITE_CONFIG.url,
+              "sameAs": [
+                "https://github.com/martiespinosa",
+                "https://linkedin.com/in/marti-espinosa",
+                "https://x.com/pepeqint"
+              ],
+              "knowsAbout": ["iOS Development", "Swift", "SwiftUI", "Mobile Development"],
+            })
+          }}
+        />
+      </head>
+      <body className={jetbrainsMono.variable}>
         {children}
         <Analytics />
       </body>
