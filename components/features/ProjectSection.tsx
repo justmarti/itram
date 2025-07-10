@@ -14,7 +14,7 @@ interface ProjectSectionProps {
 export function ProjectSection({ title, items, randomElement }: ProjectSectionProps) {
   return (
     <section className="mb-16">
-      <h3 className="text-sm mb-3 text-[#4D5562] uppercase">{title}</h3>
+      <h3 className="text-sm mb-3 text-[#65727F] uppercase">&gt; {title}</h3>
       <ul className="flex flex-col border-t border-[#222222]">
         {items.map((item, index) => (
           <li key={item.id}>

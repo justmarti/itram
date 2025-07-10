@@ -32,7 +32,7 @@ export function Item({ item, index, isLast, forceAnimate = false }: ItemProps) {
         <div className="text-sm font-mono uppercase">
           <AnimatedText text={item.text} speed={8} forceAnimate={shouldAnimateText} />
           {item.description && (
-            <small className="block text-[0.625rem] text-[#4D5562] uppercase mt-1">{item.description}</small>
+            <small className="block text-[0.625rem] text-[#65727F] uppercase mt-1">{item.description}</small>
           )}
         </div>
       </div>

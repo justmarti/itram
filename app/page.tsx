@@ -53,7 +53,7 @@ export default function Home() {
                 <h1 className="text-4xl lg:text-6xl xl:text-7xl leading-none tracking-wide text-[#9DA3AE] mb-2 font-light uppercase">
                   <AnimatedTitle text="itram" />
                 </h1>
-                <h2 className="text-lg lg:text-2xl xl:text-3xl leading-none tracking-wide text-[#4D5562] font-light uppercase">
+                <h2 className="text-lg lg:text-2xl xl:text-3xl leading-none tracking-wide text-[#65727F] font-light uppercase">
                   ios developer
                 </h2>
               </hgroup>
@@ -71,7 +71,7 @@ export default function Home() {
       </article>
 
       {/* Footer */}
-      <footer className="text-center py-6 text-[#4D5562] text-xs uppercase">
+      <footer className="text-center py-6 text-[#65727F] text-xs uppercase">
         inspired by mds
       </footer>
     </main>
