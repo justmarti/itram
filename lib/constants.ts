@@ -1,5 +1,5 @@
 export const doingItems = [
-  { id: "neutral-news", text: "neutral-news", href: "https://github.com/martiespinosa/neutral-news" },
+  { id: "neutral-news", text: "neutral-news", href: "/neutral-news" },
 ]
 
 export const doneItems = [
