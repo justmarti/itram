@@ -11,17 +11,18 @@ export default function NeutralNewsPage() {
         : 'bg-[#FAFAFA] text-[#333333]'
     }`}>
       {/* Theme Toggle Button */}
-      <button 
+      <div 
         onClick={() => setIsDarkMode(!isDarkMode)}
-        className={`fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-xl transition-colors duration-300 ${
+        className={`fixed top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-xl transition-colors duration-300 backdrop-blur-sm cursor-pointer ${
           isDarkMode 
-            ? 'bg-[#222222] hover:bg-[#333333] text-[#EEEEEE]' 
-            : 'bg-gray-100 hover:bg-gray-200 text-[#333333]'
+            ? 'bg-[#222222]/60 hover:bg-[#333333]/60 text-[#EEEEEE]' 
+            : 'bg-gray-200/60 hover:bg-gray-300/60 text-[#333333]'
         }`}
+        role="button"
         aria-label="Toggle theme"
       >
-        <span className="text-xl">{isDarkMode ? '☀️' : '🌙'}</span>
-      </button>
+        <span className="text-xl select-none" style={{ userSelect: 'none', WebkitUserSelect: 'none' }}>{isDarkMode ? '☀️' : '🌙'}</span>
+      </div>
       
       <div className="p-6 md:p-12">
         <div className="max-w-6xl mx-auto">
@@ -31,7 +32,9 @@ export default function NeutralNewsPage() {
               <img 
                 src="/neutral-news-logo.png" 
                 alt="Neutral News app icon"
-                className="w-24 h-24 lg:w-32 lg:h-32 rounded-[22.37%] shadow-lg"
+                className="w-24 h-24 lg:w-32 lg:h-32 rounded-[22.37%] shadow-lg select-none"
+                draggable={false}
+                style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
               />
             </div>
             
@@ -44,7 +47,7 @@ export default function NeutralNewsPage() {
             <p className={`text-lg lg:text-xl mb-8 max-w-2xl mx-auto ${
               isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
             }`}>
-              Get unbiased news analysis based on multiple sources
+              Get unbiased news based on multiple sources
             </p>
             
             <div className="mb-12">
@@ -55,11 +58,11 @@ export default function NeutralNewsPage() {
           </section>
 
           {/* App Screenshots - Full Width */}
-          <section className="relative w-screen left-1/2 transform -translate-x-1/2 h-[520px] -mt-40 mb-40">
+          <section className="relative w-full h-[520px] -mt-40 mb-40">
             <img 
               src="/neutral-news-screen-1.png" 
               alt="Neutral News main feed showing news articles"
-              className="absolute left-[10%] h-[650px] w-auto object-contain z-10"
+              className="absolute left-0 h-[650px] w-auto object-contain z-10"
               style={{ height: '650px !important', width: 'auto !important' }}
             />
             <img 
@@ -71,7 +74,7 @@ export default function NeutralNewsPage() {
             <img 
               src="/neutral-news-screen-3.png" 
               alt="Neutral News detailed article comparison"
-              className="absolute right-[10%] h-[650px] w-auto object-contain z-10"
+              className="absolute right-0 h-[650px] w-auto object-contain z-10"
               style={{ height: '650px !important', width: 'auto !important' }}
             />
           </section>
@@ -106,12 +109,12 @@ export default function NeutralNewsPage() {
                 <h3 className={`text-xl font-light uppercase tracking-wide mb-4 ${
                   isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
                 }`}>
-                  Multi-Source Analysis
+                  Multi-Source Coverage
                 </h3>
                 <p className={`text-sm leading-relaxed ${
                   isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
                 }`}>
-                  Compare perspectives from different news sources to understand the complete story behind every headline.
+                  See how different media cover the same story — all in one place.
                 </p>
               </div>
 
@@ -124,12 +127,12 @@ export default function NeutralNewsPage() {
                 <h3 className={`text-xl font-light uppercase tracking-wide mb-4 ${
                   isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
                 }`}>
-                  Bias Detection
+                  Spot the Bias
                 </h3>
                 <p className={`text-sm leading-relaxed ${
                   isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
                 }`}>
-                  Advanced algorithms identify potential bias and present balanced viewpoints for informed decision-making.
+                  Discover potential bias with our clear, easy-to-understand neutral score.
                 </p>
               </div>
 
@@ -137,17 +140,17 @@ export default function NeutralNewsPage() {
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ${
                   isDarkMode ? 'bg-[#222222]' : 'bg-gray-100'
                 }`}>
-                  <span className="text-2xl">📊</span>
+                  <span className="text-2xl">🧠</span>
                 </div>
                 <h3 className={`text-xl font-light uppercase tracking-wide mb-4 ${
                   isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
                 }`}>
-                  Smart Summaries
+                  Understand more, faster
                 </h3>
                 <p className={`text-sm leading-relaxed ${
                   isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
                 }`}>
-                  Get concise, fact-based summaries that highlight key information without editorial influence.
+                  Get quick, neutral summaries that go straight to the point.
                 </p>
               </div>
             </div>
@@ -162,22 +165,22 @@ export default function NeutralNewsPage() {
                 <h2 className={`text-3xl lg:text-4xl font-light uppercase tracking-wide mb-6 ${
                   isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
                 }`}>
-                  Stay Informed,<br />Stay Neutral
+                  Stay Informed,<br />Think Freely
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center mt-1 ${
                       isDarkMode ? 'bg-[#222222]' : 'bg-gray-100'
                     }`}>
-                      <span className="text-sm">🔍</span>
+                      <span className="text-sm">🕒</span>
                     </div>
                     <div>
                       <h3 className={`font-light uppercase tracking-wide mb-2 ${
                         isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
-                      }`}>Real-time Analysis</h3>
+                      }`}>Always up to date</h3>
                       <p className={`text-sm ${
                         isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
-                      }`}>Instant processing of breaking news from trusted sources worldwide.</p>
+                      }`}>Fresh news, every hour.</p>
                     </div>
                   </div>
                   
@@ -193,7 +196,7 @@ export default function NeutralNewsPage() {
                       }`}>Privacy First</h3>
                       <p className={`text-sm ${
                         isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
-                      }`}>Your reading habits stay private. No tracking, no data collection.</p>
+                      }`}>No tracking. No data collection. Just private reading.</p>
                     </div>
                   </div>
                   
@@ -209,7 +212,7 @@ export default function NeutralNewsPage() {
                       }`}>Dark Mode Ready</h3>
                       <p className={`text-sm ${
                         isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
-                      }`}>Comfortable reading experience in any lighting condition.</p>
+                      }`}>Comfortable reading, day or night.</p>
                     </div>
                   </div>
                 </div>
