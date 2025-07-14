@@ -47,7 +47,7 @@ export default function NeutralNewsPage() {
             <p className={`text-lg lg:text-xl mb-8 max-w-2xl mx-auto ${
               isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
             }`}>
-              Get unbiased news based on multiple sources
+              Read unbiased news based on multiple sources
             </p>
             
             <div className="mb-12">
@@ -169,7 +169,7 @@ export default function NeutralNewsPage() {
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center mt-1 ${
+                    <div className={`w-8 h-8 rounded-[6px] flex items-center justify-center mt-1 ${
                       isDarkMode ? 'bg-[#222222]' : 'bg-gray-100'
                     }`}>
                       <span className="text-sm">🕒</span>
@@ -185,7 +185,7 @@ export default function NeutralNewsPage() {
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center mt-1 ${
+                    <div className={`w-8 h-8 rounded-[6px] flex items-center justify-center mt-1 ${
                       isDarkMode ? 'bg-[#222222]' : 'bg-gray-100'
                     }`}>
                       <span className="text-sm">🛡️</span>
@@ -196,12 +196,12 @@ export default function NeutralNewsPage() {
                       }`}>Privacy First</h3>
                       <p className={`text-sm ${
                         isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
-                      }`}>No tracking. No data collection. Just private reading.</p>
+                      }`}>No tracking. No data collection.</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center mt-1 ${
+                    <div className={`w-8 h-8 rounded-[6px] flex items-center justify-center mt-1 ${
                       isDarkMode ? 'bg-[#222222]' : 'bg-gray-100'
                     }`}>
                       <span className="text-sm">🌙</span>
@@ -244,7 +244,7 @@ export default function NeutralNewsPage() {
               <h2 className={`text-3xl lg:text-4xl font-light uppercase tracking-wide mb-4 ${
                 isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
               }`}>
-                Coming Soon
+                Future Features
               </h2>
             </div>
 
