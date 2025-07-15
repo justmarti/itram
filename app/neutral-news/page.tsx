@@ -60,67 +60,69 @@ export default function NeutralNewsPage() {
           {/* App Screenshots */}
           <section className="pb-16">
             {/* Desktop: Side by side vertical screenshots */}
-            <div className="hidden lg:flex justify-center items-start gap-8">
+            <div className="hidden lg:flex justify-center items-start gap-8 max-w-7xl mx-auto px-4">
               <img 
                 src="/neutral-news-screen-1.png" 
                 alt="Neutral News main feed showing news articles"
-                className="h-[600px] w-auto object-contain drop-shadow-lg"
+                className="h-[600px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
               />
               <img 
                 src="/neutral-news-screen-2.png" 
                 alt="Neutral News article analysis view"
-                className="h-[600px] w-auto object-contain drop-shadow-lg"
+                className="h-[600px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
               />
               <img 
                 src="/neutral-news-screen-3.png" 
                 alt="Neutral News detailed article comparison"
-                className="h-[600px] w-auto object-contain drop-shadow-lg"
+                className="h-[600px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
               />
             </div>
 
             {/* Tablet: 2 + 1 layout */}
-            <div className="hidden md:block lg:hidden">
-              <div className="flex justify-center gap-6 mb-8">
+            <div className="hidden md:block lg:hidden max-w-4xl mx-auto px-4">
+              <div className="flex flex-wrap justify-center gap-6 mb-8">
                 <img 
                   src="/neutral-news-screen-1.png" 
                   alt="Neutral News main feed"
-                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                  className="h-[500px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
                 />
                 <img 
                   src="/neutral-news-screen-2.png" 
                   alt="Neutral News article analysis"
-                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                  className="h-[500px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
                 />
               </div>
               <div className="flex justify-center">
                 <img 
                   src="/neutral-news-screen-3.png" 
                   alt="Neutral News comparison"
-                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                  className="h-[500px] w-auto max-w-full object-contain drop-shadow-lg flex-shrink-0"
                 />
               </div>
             </div>
             
             {/* Mobile: Single column */}
-            <div className="md:hidden space-y-8 px-4">
-              <div className="text-center">
-                <img 
-                  src="/neutral-news-screen-2.png" 
-                  alt="Neutral News article analysis"
-                  className="mx-auto h-[450px] w-auto object-contain drop-shadow-lg"
-                />
-              </div>
-              <div className="flex gap-6 justify-center">
-                <img 
-                  src="/neutral-news-screen-1.png" 
-                  alt="Neutral News main feed"
-                  className="h-[350px] w-auto object-contain drop-shadow-lg"
-                />
-                <img 
-                  src="/neutral-news-screen-3.png" 
-                  alt="Neutral News comparison"
-                  className="h-[350px] w-auto object-contain drop-shadow-lg"
-                />
+            <div className="md:hidden max-w-sm mx-auto px-4">
+              <div className="space-y-8">
+                <div className="text-center">
+                  <img 
+                    src="/neutral-news-screen-2.png" 
+                    alt="Neutral News article analysis"
+                    className="mx-auto h-[450px] w-auto max-w-full object-contain drop-shadow-lg"
+                  />
+                </div>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <img 
+                    src="/neutral-news-screen-1.png" 
+                    alt="Neutral News main feed"
+                    className="h-[350px] w-auto max-w-[45%] object-contain drop-shadow-lg flex-shrink-0"
+                  />
+                  <img 
+                    src="/neutral-news-screen-3.png" 
+                    alt="Neutral News comparison"
+                    className="h-[350px] w-auto max-w-[45%] object-contain drop-shadow-lg flex-shrink-0"
+                  />
+                </div>
               </div>
             </div>
           </section>
