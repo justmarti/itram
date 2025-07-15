@@ -27,7 +27,7 @@ export default function NeutralNewsPage() {
       <div className="p-6 md:p-12">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
-          <section className="text-center py-20 lg:py-32">
+          <section className="text-center pb-16">
             <div className="flex justify-center mb-8">
               <img 
                 src="/neutral-news-logo.png" 
@@ -44,42 +44,85 @@ export default function NeutralNewsPage() {
               Neutral News
             </h1>
             
-            <p className={`text-lg lg:text-xl mb-8 max-w-2xl mx-auto ${
+            <p className={`text-lg lg:text-xl mb-6 max-w-2xl mx-auto ${
               isDarkMode ? 'text-[#65727F]' : 'text-gray-600'
             }`}>
               Read unbiased news based on multiple sources
             </p>
             
-            <div className="mb-12">
+            <div>
               <p className="text-orange-500 text-lg font-medium uppercase tracking-wide">
                 · Soon in Beta ·
               </p>
             </div>
           </section>
 
-          {/* App Screenshots - Full Width */}
-          <section className="relative w-full h-[520px] -mt-40 mb-40">
-            <img 
-              src="/neutral-news-screen-1.png" 
-              alt="Neutral News main feed showing news articles"
-              className="absolute left-0 h-[650px] w-auto object-contain z-10"
-              style={{ height: '650px !important', width: 'auto !important' }}
-            />
-            <img 
-              src="/neutral-news-screen-2.png" 
-              alt="Neutral News article analysis view"
-              className="absolute left-1/2 transform -translate-x-1/2 h-[650px] w-auto object-contain z-20"
-              style={{ height: '650px !important', width: 'auto !important' }}
-            />
-            <img 
-              src="/neutral-news-screen-3.png" 
-              alt="Neutral News detailed article comparison"
-              className="absolute right-0 h-[650px] w-auto object-contain z-10"
-              style={{ height: '650px !important', width: 'auto !important' }}
-            />
-          </section>
+          {/* App Screenshots */}
+          <section className="pb-16">
+            {/* Desktop: Side by side vertical screenshots */}
+            <div className="hidden lg:flex justify-center items-start gap-8">
+              <img 
+                src="/neutral-news-screen-1.png" 
+                alt="Neutral News main feed showing news articles"
+                className="h-[600px] w-auto object-contain drop-shadow-lg"
+              />
+              <img 
+                src="/neutral-news-screen-2.png" 
+                alt="Neutral News article analysis view"
+                className="h-[600px] w-auto object-contain drop-shadow-lg"
+              />
+              <img 
+                src="/neutral-news-screen-3.png" 
+                alt="Neutral News detailed article comparison"
+                className="h-[600px] w-auto object-contain drop-shadow-lg"
+              />
+            </div>
 
-          <section className="py-0">
+            {/* Tablet: 2 + 1 layout */}
+            <div className="hidden md:block lg:hidden">
+              <div className="flex justify-center gap-6 mb-8">
+                <img 
+                  src="/neutral-news-screen-1.png" 
+                  alt="Neutral News main feed"
+                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                />
+                <img 
+                  src="/neutral-news-screen-2.png" 
+                  alt="Neutral News article analysis"
+                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                />
+              </div>
+              <div className="flex justify-center">
+                <img 
+                  src="/neutral-news-screen-3.png" 
+                  alt="Neutral News comparison"
+                  className="h-[500px] w-auto object-contain drop-shadow-lg"
+                />
+              </div>
+            </div>
+            
+            {/* Mobile: Single column */}
+            <div className="md:hidden space-y-8 px-4">
+              <div className="text-center">
+                <img 
+                  src="/neutral-news-screen-2.png" 
+                  alt="Neutral News article analysis"
+                  className="mx-auto h-[450px] w-auto object-contain drop-shadow-lg"
+                />
+              </div>
+              <div className="flex gap-6 justify-center">
+                <img 
+                  src="/neutral-news-screen-1.png" 
+                  alt="Neutral News main feed"
+                  className="h-[350px] w-auto object-contain drop-shadow-lg"
+                />
+                <img 
+                  src="/neutral-news-screen-3.png" 
+                  alt="Neutral News comparison"
+                  className="h-[350px] w-auto object-contain drop-shadow-lg"
+                />
+              </div>
+            </div>
           </section>
 
           {/* Features Section */}
