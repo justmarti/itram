@@ -35,12 +35,12 @@ export default function NeutralNewsPage() {
         
         // Si la app no se abre en 2 segundos, ir a App Store
         setTimeout(() => {
-          window.location.href = 'https://apps.apple.com/app/neutral-news/idXXXXXXXXX'
+          window.location.href = 'https://apps.apple.com/app/neutralnews/id6748583935'
         }, 2000)
       } else {
         // En Android o desktop, ir directamente a App Store/Play Store
         setTimeout(() => {
-          window.location.href = 'https://apps.apple.com/app/neutral-news/idXXXXXXXXX'
+          window.location.href = 'https://apps.apple.com/app/neutralnews/id6748583935'
         }, 1000)
       }
     }
