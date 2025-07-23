@@ -1,9 +1,78 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isRedirecting, setIsRedirecting] = useState(false)
+
+  useEffect(() => {
+    // Verificar si hay parámetros de deep link
+    const urlParams = new URLSearchParams(window.location.search)
+    const group = urlParams.get('group')
+    const date = urlParams.get('date')
+
+    if (group && date) {
+      setIsRedirecting(true)
+      
+      // Crear deep link para la app
+      const deepLink = `neutralnews://news?group=${group}&date=${date}`
+      
+      // Detectar si es iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      
+      if (isIOS) {
+        // Intentar abrir la app usando iframe oculto
+        const iframe = document.createElement('iframe')
+        iframe.style.display = 'none'
+        iframe.src = deepLink
+        document.body.appendChild(iframe)
+        
+        // Remover iframe después de intentar
+        setTimeout(() => {
+          document.body.removeChild(iframe)
+        }, 100)
+        
+        // Si la app no se abre en 2 segundos, ir a App Store
+        setTimeout(() => {
+          window.location.href = 'https://apps.apple.com/app/neutral-news/idXXXXXXXXX'
+        }, 2000)
+      } else {
+        // En Android o desktop, ir directamente a App Store/Play Store
+        setTimeout(() => {
+          window.location.href = 'https://apps.apple.com/app/neutral-news/idXXXXXXXXX'
+        }, 1000)
+      }
+    }
+  }, [])
+  // Mostrar pantalla de redirección si se está procesando un deep link
+  if (isRedirecting) {
+    return (
+      <main className={`min-h-screen font-mono relative transition-colors duration-300 flex items-center justify-center ${
+        isDarkMode ? 'bg-[#111111] text-[#EEEEEE]' : 'bg-[#FAFAFA] text-[#333333]'
+      }`}>
+        <div className="text-center">
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/neutral-news-logo.png" 
+              alt="Neutral News app icon"
+              className="w-16 h-16 rounded-[22.37%] shadow-lg select-none animate-pulse"
+              draggable={false}
+            />
+          </div>
+          <h1 className={`text-2xl font-light uppercase tracking-wide mb-4 ${
+            isDarkMode ? 'text-[#9DA3AE]' : 'text-gray-700'
+          }`}>
+            Abriendo Neutral News
+          </h1>
+          <p className={`${isDarkMode ? 'text-[#65727F]' : 'text-gray-600'}`}>
+            Si no tienes la app, serás redirigido a la App Store...
+          </p>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <main className={`min-h-screen font-mono relative transition-colors duration-300 ${
       isDarkMode 
