@@ -51,7 +51,7 @@ export default function NeutralNewsPage() {
       <main className={`min-h-screen font-mono relative transition-colors duration-300 flex items-center justify-center ${
         isDarkMode ? 'bg-[#111111] text-[#EEEEEE]' : 'bg-[#FAFAFA] text-[#333333]'
       }`}>
-        <div className="text-center">
+        <div className="text-center px-6 max-w-md mx-auto">
           <div className="flex justify-center mb-8">
             <img 
               src="/neutral-news-logo.png" 
@@ -65,7 +65,7 @@ export default function NeutralNewsPage() {
           }`}>
             Abriendo Neutral News
           </h1>
-          <p className={`${isDarkMode ? 'text-[#65727F]' : 'text-gray-600'}`}>
+          <p className={`leading-relaxed ${isDarkMode ? 'text-[#65727F]' : 'text-gray-600'}`}>
             Si no tienes la app, serás redirigido a la App Store...
           </p>
         </div>
