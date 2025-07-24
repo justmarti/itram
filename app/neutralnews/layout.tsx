@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "article",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Neutral News",
     description: "Lee noticias neutrales basadas en múltiples fuentes",
     images: ["/neutral-news-logo.png"],
