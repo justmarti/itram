@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react"
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
-  // Redirección profesional instantánea
+  // Solo mostrar info de los parámetros para debug
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
@@ -13,24 +13,9 @@ export default function NeutralNewsPage() {
     const group = urlParams.get('group');
     const date = urlParams.get('date');
     
-    // Solo proceder si hay parámetros específicos de noticia
-    if (!group || !date) return;
-    
-    // Evitar bucles infinitos
-    if (sessionStorage.getItem('nn-redirect-attempted')) return;
-    sessionStorage.setItem('nn-redirect-attempted', 'true');
-    
-    // Solo intentar en iOS
-    if (!/iPad|iPhone|iPod/.test(navigator.userAgent)) return;
-    
-    // Intentar custom scheme inmediatamente
-    const customURL = `neutralnews://news?group=${group}&date=${date}`;
-    
-    try {
-      // Método directo más efectivo
-      window.location.href = customURL;
-    } catch (error) {
-      console.log('Custom scheme failed, app not installed');
+    if (group && date) {
+      console.log('📱 Universal Link detectado:', { group, date });
+      console.log('💡 Debería abrir automáticamente en la app si está configurado correctamente');
     }
   }, [])
 

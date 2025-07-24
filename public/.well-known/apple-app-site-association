@@ -3,7 +3,7 @@
     "apps": [],
     "details": [{
       "appID": "Z458PWZBW7.dev.itram.neutralnews",
-      "paths": ["/neutralnews*"]
+      "paths": ["/neutralnews", "/neutralnews/*", "/neutralnews?*"]
     }]
   }
 }
