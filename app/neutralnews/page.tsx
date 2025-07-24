@@ -5,84 +5,79 @@ import React, { useState, useEffect } from "react"
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
-  // Función para redirección inteligente a la app
-  const redirectToNeutralNews = (group: number, date: string) => {
-    // Solo en dispositivos iOS
-    if (typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
-      const customURL = `neutralnews://news?group=${group}&date=${date}`;
-      const universalURL = `https://itram.dev/neutralnews?group=${group}&date=${date}`;
-      
-      // Intenta custom scheme primero (más rápido)
-      tryCustomScheme(customURL, universalURL);
-    } else if (typeof window !== 'undefined') {
-      // En otros dispositivos, quedarse en web
-      console.log('Non-iOS device, staying on web');
-    }
-  }
-
-  const tryCustomScheme = (customURL: string, fallbackURL: string) => {
-    let hasAppInstalled = false;
-    
-    // Detectar si la app se abre exitosamente
-    const startTime = Date.now();
-    
-    // Crear iframe invisible para intentar abrir la app
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = customURL;
-    document.body.appendChild(iframe);
-    
-    // Si después de 800ms no se abrió la app, usar Universal Link
-    const timeoutId = setTimeout(() => {
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-      if (!hasAppInstalled) {
-        window.location.href = fallbackURL;
-      }
-    }, 800);
-    
-    // Detectar si la página perdió el foco (indica que se abrió la app)
-    const handlePageHide = () => {
-      hasAppInstalled = true;
-      clearTimeout(timeoutId);
-    };
-    
-    const handleBlur = () => {
-      setTimeout(() => {
-        if (Date.now() - startTime > 1000) {
-          hasAppInstalled = true;
-          clearTimeout(timeoutId);
-        }
-      }, 100);
-    };
-
-    window.addEventListener('pagehide', handlePageHide);
-    window.addEventListener('blur', handleBlur);
-    
-    // Cleanup después del timeout
-    setTimeout(() => {
-      window.removeEventListener('pagehide', handlePageHide);
-      window.removeEventListener('blur', handleBlur);
-    }, 2000);
-  }
-
-  // Auto-redirección si ya estás en una URL de noticia específica
+  // Auto-redirección automática en iOS
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const group = urlParams.get('group');
-      const date = urlParams.get('date');
+    if (typeof window === 'undefined') return;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const group = urlParams.get('group');
+    const date = urlParams.get('date');
+    
+    // Solo proceder si hay parámetros específicos de noticia
+    if (!group || !date) return;
+    
+    // Evitar bucles infinitos
+    const hasAttempted = sessionStorage.getItem('nn-redirect-attempted');
+    if (hasAttempted) return;
+    
+    // Marcar que ya intentamos
+    sessionStorage.setItem('nn-redirect-attempted', 'true');
+    
+    // Solo intentar en iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (!isIOS) return;
+    
+    const customURL = `neutralnews://news?group=${group}&date=${date}`;
+    
+    // Estrategia profesional: intentar abrir app directamente
+    const attemptAppOpen = () => {
+      let appOpened = false;
       
-      if (group && date) {
-        // Esperar un poco para que se cargue la página
-        const timer = setTimeout(() => {
-          redirectToNeutralNews(parseInt(group), date);
-        }, 100);
+      // Crear enlace invisible
+      const link = document.createElement('a');
+      link.href = customURL;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      
+      // Event listeners para detectar si se abrió la app
+      const onVisibilityChange = () => {
+        if (document.hidden) {
+          appOpened = true;
+        }
+      };
+      
+      const onPageHide = () => {
+        appOpened = true;
+      };
+      
+      // Añadir listeners
+      document.addEventListener('visibilitychange', onVisibilityChange);
+      window.addEventListener('pagehide', onPageHide);
+      
+      // Intentar abrir app
+      link.click();
+      
+      // Cleanup y fallback después de 1.5 segundos
+      setTimeout(() => {
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        window.removeEventListener('pagehide', onPageHide);
+        document.body.removeChild(link);
         
-        return () => clearTimeout(timer);
-      }
-    }
+        // Si no se abrió la app, usar Universal Links como fallback
+        if (!appOpened) {
+          console.log('Custom scheme failed, using Universal Links fallback');
+          // Redirigir a Universal Link para forzar la apertura
+          window.location.href = `https://itram.dev/neutralnews?group=${group}&date=${date}`;
+        }
+      }, 1500);
+    };
+    
+    // Ejecutar después de que la página cargue completamente
+    const timer = setTimeout(attemptAppOpen, 300);
+    
+    return () => {
+      clearTimeout(timer);
+    };
   }, [])
 
   return (
