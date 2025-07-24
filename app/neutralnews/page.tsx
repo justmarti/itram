@@ -4,8 +4,86 @@ import React, { useState, useEffect } from "react"
 
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
-  // Con Universal Links, iOS maneja automáticamente la redirección
-  // Si el usuario llega aquí, es porque no tiene la app instalada
+
+  // Función para redirección inteligente a la app
+  const redirectToNeutralNews = (group: number, date: string) => {
+    // Solo en dispositivos iOS
+    if (typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      const customURL = `neutralnews://news?group=${group}&date=${date}`;
+      const universalURL = `https://itram.dev/neutralnews?group=${group}&date=${date}`;
+      
+      // Intenta custom scheme primero (más rápido)
+      tryCustomScheme(customURL, universalURL);
+    } else if (typeof window !== 'undefined') {
+      // En otros dispositivos, quedarse en web
+      console.log('Non-iOS device, staying on web');
+    }
+  }
+
+  const tryCustomScheme = (customURL: string, fallbackURL: string) => {
+    let hasAppInstalled = false;
+    
+    // Detectar si la app se abre exitosamente
+    const startTime = Date.now();
+    
+    // Crear iframe invisible para intentar abrir la app
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = customURL;
+    document.body.appendChild(iframe);
+    
+    // Si después de 800ms no se abrió la app, usar Universal Link
+    const timeoutId = setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+      if (!hasAppInstalled) {
+        window.location.href = fallbackURL;
+      }
+    }, 800);
+    
+    // Detectar si la página perdió el foco (indica que se abrió la app)
+    const handlePageHide = () => {
+      hasAppInstalled = true;
+      clearTimeout(timeoutId);
+    };
+    
+    const handleBlur = () => {
+      setTimeout(() => {
+        if (Date.now() - startTime > 1000) {
+          hasAppInstalled = true;
+          clearTimeout(timeoutId);
+        }
+      }, 100);
+    };
+
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('blur', handleBlur);
+    
+    // Cleanup después del timeout
+    setTimeout(() => {
+      window.removeEventListener('pagehide', handlePageHide);
+      window.removeEventListener('blur', handleBlur);
+    }, 2000);
+  }
+
+  // Auto-redirección si ya estás en una URL de noticia específica
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const group = urlParams.get('group');
+      const date = urlParams.get('date');
+      
+      if (group && date) {
+        // Esperar un poco para que se cargue la página
+        const timer = setTimeout(() => {
+          redirectToNeutralNews(parseInt(group), date);
+        }, 100);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [])
 
   return (
     <main className={`min-h-screen font-mono relative transition-colors duration-300 ${
