@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react"
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
 
-  // Auto-redirección automática en iOS
+  // Redirección profesional instantánea
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
@@ -17,67 +17,21 @@ export default function NeutralNewsPage() {
     if (!group || !date) return;
     
     // Evitar bucles infinitos
-    const hasAttempted = sessionStorage.getItem('nn-redirect-attempted');
-    if (hasAttempted) return;
-    
-    // Marcar que ya intentamos
+    if (sessionStorage.getItem('nn-redirect-attempted')) return;
     sessionStorage.setItem('nn-redirect-attempted', 'true');
     
     // Solo intentar en iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    if (!isIOS) return;
+    if (!/iPad|iPhone|iPod/.test(navigator.userAgent)) return;
     
+    // Intentar custom scheme inmediatamente
     const customURL = `neutralnews://news?group=${group}&date=${date}`;
     
-    // Estrategia profesional: intentar abrir app directamente
-    const attemptAppOpen = () => {
-      let appOpened = false;
-      
-      // Crear enlace invisible
-      const link = document.createElement('a');
-      link.href = customURL;
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      
-      // Event listeners para detectar si se abrió la app
-      const onVisibilityChange = () => {
-        if (document.hidden) {
-          appOpened = true;
-        }
-      };
-      
-      const onPageHide = () => {
-        appOpened = true;
-      };
-      
-      // Añadir listeners
-      document.addEventListener('visibilitychange', onVisibilityChange);
-      window.addEventListener('pagehide', onPageHide);
-      
-      // Intentar abrir app
-      link.click();
-      
-      // Cleanup y fallback después de 1.5 segundos
-      setTimeout(() => {
-        document.removeEventListener('visibilitychange', onVisibilityChange);
-        window.removeEventListener('pagehide', onPageHide);
-        document.body.removeChild(link);
-        
-        // Si no se abrió la app, usar Universal Links como fallback
-        if (!appOpened) {
-          console.log('Custom scheme failed, using Universal Links fallback');
-          // Redirigir a Universal Link para forzar la apertura
-          window.location.href = `https://itram.dev/neutralnews?group=${group}&date=${date}`;
-        }
-      }, 1500);
-    };
-    
-    // Ejecutar después de que la página cargue completamente
-    const timer = setTimeout(attemptAppOpen, 300);
-    
-    return () => {
-      clearTimeout(timer);
-    };
+    try {
+      // Método directo más efectivo
+      window.location.href = customURL;
+    } catch (error) {
+      console.log('Custom scheme failed, app not installed');
+    }
   }, [])
 
   return (
