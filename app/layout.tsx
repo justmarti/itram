@@ -112,8 +112,8 @@ export default function RootLayout({
               "jobTitle": "iOS Developer",
               "url": SITE_CONFIG.url,
               "sameAs": [
-                "https://github.com/martiespinosa",
-                "https://linkedin.com/in/marti-espinosa",
+                "https://github.com/justmarti",
+                "https://linkedin.com/in/martiespinosa",
                 "https://x.com/pepeqint"
               ],
               "knowsAbout": ["iOS Development", "Swift", "SwiftUI", "Mobile Development"],

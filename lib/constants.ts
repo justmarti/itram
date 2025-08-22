@@ -3,10 +3,10 @@ export const doingItems = [
 ]
 
 export const doneItems = [
-  { id: "bookworm", text: "bookworm", href: "https://github.com/martiespinosa/bookworm" },
-  { id: "github-clone", text: "github-clone", href: "https://github.com/martiespinosa/github-clone" },
-  { id: "habit-tracker", text: "habit-tracker", href: "https://github.com/martiespinosa/habit-tracker" },
-  { id: "moonshot", text: "moonshot", href: "https://github.com/martiespinosa/moonshot" },
+  { id: "bookworm", text: "bookworm", href: "https://github.com/justmarti/bookworm" },
+  { id: "github-clone", text: "github-clone", href: "https://github.com/justmarti/github-clone" },
+  { id: "habit-tracker", text: "habit-tracker", href: "https://github.com/justmarti/habit-tracker" },
+  { id: "moonshot", text: "moonshot", href: "https://github.com/justmarti/moonshot" },
 ]
 
 export const workedInItems = [
@@ -15,7 +15,7 @@ export const workedInItems = [
 
 export const contactItems = [
   { id: "email", text: "email", href: "mailto:martiespinosa99@gmail.com" },
-  { id: "github", text: "github", href: "https://github.com/martiespinosa" },
-  { id: "linkedin", text: "linkedin", href: "https://linkedin.com/in/marti-espinosa" },
+  { id: "github", text: "github", href: "https://github.com/justmarti" },
+  { id: "linkedin", text: "linkedin", href: "https://linkedin.com/in/martiespinosa" },
   { id: "x", text: "x", href: "https://x.com/pepeqint" },
 ] 
