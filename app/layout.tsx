@@ -15,10 +15,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: SITE_CONFIG.name.toUpperCase(),
-    template: `%s | ${SITE_CONFIG.name.toUpperCase()}`,
+    default: 'Martí Espinosa - iOS Developer | ITRAM',
+    template: `%s | Martí Espinosa - ITRAM`,
   },
-  description: SITE_CONFIG.description,
+  description: 'Martí Espinosa - iOS Developer building mobile apps with Swift and SwiftUI',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -45,6 +45,8 @@ export const metadata: Metadata = {
   },
   keywords: [
     'itram',
+    'marti',
+    'martí',
     'marti espinosa',
     'martí espinosa',
     'marti espinosa farran',
@@ -109,6 +111,14 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Martí Espinosa",
+              "alternateName": [
+                "Marti", 
+                "Martí",
+                "Marti Espinosa", 
+                "Martí Espinosa Farran", 
+                "Marti Espinosa Farran",
+                "ITRAM"
+              ],
               "jobTitle": "iOS Developer",
               "url": SITE_CONFIG.url,
               "sameAs": [
