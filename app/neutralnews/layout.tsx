@@ -1,6 +1,8 @@
 import { Metadata } from "next"
+import { SITE_CONFIG } from '@/constants/config';
 
 export const metadata: Metadata = {
+  metadataBase: SITE_CONFIG.metadataBase,
   title: "Neutral News",
   description: "Lee noticias neutrales basadas en múltiples fuentes",
   openGraph: {

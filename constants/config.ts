@@ -2,6 +2,7 @@ export const SITE_CONFIG = {
   name: 'ITRAM',
   description: 'Portfolio by Martí Espinosa – iOS Developer',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://itram.dev',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://itram.dev'),
   defaultLocale: 'en',
   supportedLocales: ['en', 'es'],
 } as const;
