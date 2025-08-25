@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import "../globals.css"
 
 export default function NeutralNewsPage() {
   const [isDarkMode, setIsDarkMode] = useState(true)
@@ -290,7 +289,6 @@ export default function NeutralNewsPage() {
                   }`}>
                     <div className="text-3xl mb-4">📱</div>
                     <p className="text-sm uppercase tracking-wide">Features Screenshot</p>
-                    <p className="text-xs mt-2">Place app features<br />screenshot here</p>
                   </div>
                 </div>
               </div>

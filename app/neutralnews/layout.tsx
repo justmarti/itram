@@ -1,5 +1,13 @@
 import { Metadata } from "next"
 import { SITE_CONFIG } from '@/constants/config';
+import { JetBrains_Mono } from 'next/font/google';
+import "../globals.css"
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   metadataBase: SITE_CONFIG.metadataBase,
@@ -31,5 +39,11 @@ export default function NeutralNewsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <html lang="en">
+      <body className={jetbrainsMono.variable}>
+        {children}
+      </body>
+    </html>
+  )
 }
