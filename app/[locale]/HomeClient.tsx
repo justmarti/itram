@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { PixelatedLogo } from "@/components/common/Logo"
 import { AnimatedTitle } from "@/components/common/AnimatedTitle"
 import { ProjectSection } from "@/components/features/ProjectSection"
-import { doingItems, doneItems, contactItems, workedInItems } from "@/lib/constants"
+import { doingItems, doneItems, contactItems, experienceItems } from "@/lib/constants"
 
 interface HomeClientProps {
   translations: {
@@ -12,7 +12,7 @@ interface HomeClientProps {
     sections: {
       doing: string;
       done: string;
-      'worked in': string;
+      experience: string;
       contact: string;
     };
     footer: string;
@@ -27,7 +27,7 @@ export default function HomeClient({ translations }: HomeClientProps) {
     const allElements = [
       ...doingItems.map(item => item.id),
       ...doneItems.map(item => item.id),
-      ...workedInItems.map(item => item.id),
+      ...experienceItems.map(item => item.id),
       ...contactItems.map(item => item.id),
     ]
 
@@ -76,7 +76,7 @@ export default function HomeClient({ translations }: HomeClientProps) {
             <nav aria-label="Project sections">
               <ProjectSection title={translations.sections.doing} items={doingItems} randomElement={randomElement} />
               <ProjectSection title={translations.sections.done} items={doneItems} randomElement={randomElement} />
-              <ProjectSection title={translations.sections['worked in']} items={workedInItems} randomElement={randomElement} />
+              <ProjectSection title={translations.sections.experience} items={experienceItems} randomElement={randomElement} />
               <ProjectSection title={translations.sections.contact} items={contactItems} randomElement={randomElement} />
             </nav>
           </div>

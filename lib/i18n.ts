@@ -11,7 +11,7 @@ export const translations = {
     sections: {
       doing: 'doing',
       done: 'done',
-      'worked in': 'worked in',
+      experience: 'experience',
       contact: 'contact',
     },
     footer: 'inspired by mds',
@@ -21,9 +21,9 @@ export const translations = {
     description: 'Martí Espinosa - Desarrollador iOS creando apps móviles con Swift y SwiftUI',
     jobTitle: 'Desarrollador iOS',
     sections: {
-      doing: 'haciendo',
+      doing: 'en progreso',
       done: 'hecho',
-      'worked in': 'trabajé en',
+      experience: 'experiencia',
       contact: 'contacto',
     },
     footer: 'inspirado en mds',
@@ -33,9 +33,9 @@ export const translations = {
     description: 'Martí Espinosa - Desenvolupador iOS creant apps mòbils amb Swift i SwiftUI',
     jobTitle: 'Desenvolupador iOS',
     sections: {
-      doing: 'fent',
+      doing: 'en curs',
       done: 'fet',
-      'worked in': 'he treballat a',
+      experience: 'experiència',
       contact: 'contacte',
     },
     footer: 'inspirat en mds',
