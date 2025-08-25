@@ -389,7 +389,7 @@ export default function NeutralNewsPage() {
                 isDarkMode 
                   ? 'bg-[#111111] text-[#EEEEEE] hover:bg-[#333333]' 
                   : 'bg-[#F5F5F5] text-[#333333] hover:bg-gray-200'
-              }`}>
+              }`} style={{ textDecoration: 'line-through' }}>
                 Get Early Access
               </button>
             </div>
