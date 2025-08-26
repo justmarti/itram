@@ -1,4 +1,4 @@
-export const doingItems = [
+export const ongoingItems = [
   { id: "neutral-news", text: "neutral-news", href: "/neutralnews" },
 ]
 
@@ -13,7 +13,7 @@ export const experienceItems = [
   { id: "family-meal-planner", text: "family-meal-planner · inqbarna", description: "Social login, Localization, Dark mode", href: "https://apps.apple.com/es/app/family-meal-planner/id1620301321" },
 ]
 
-export const contactItems = [
+export const connectItems = [
   { id: "email", text: "email", href: "mailto:martiespinosa99@gmail.com" },
   { id: "github", text: "github", href: "https://github.com/justmarti" },
   { id: "linkedin", text: "linkedin", href: "https://linkedin.com/in/martiespinosa" },

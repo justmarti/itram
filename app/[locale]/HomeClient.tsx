@@ -4,16 +4,16 @@ import React, { useState, useEffect } from "react"
 import { PixelatedLogo } from "@/components/common/Logo"
 import { AnimatedTitle } from "@/components/common/AnimatedTitle"
 import { ProjectSection } from "@/components/features/ProjectSection"
-import { doingItems, doneItems, contactItems, experienceItems } from "@/lib/constants"
+import { ongoingItems, doneItems, connectItems, experienceItems } from "@/lib/constants"
 
 interface HomeClientProps {
   translations: {
     jobTitle: string;
     sections: {
-      doing: string;
+      ongoing: string;
       done: string;
       experience: string;
-      contact: string;
+      connect: string;
     };
     footer: string;
   };
@@ -25,10 +25,10 @@ export default function HomeClient({ translations }: HomeClientProps) {
   // Random element animation effect
   useEffect(() => {
     const allElements = [
-      ...doingItems.map(item => item.id),
+      ...ongoingItems.map(item => item.id),
       ...doneItems.map(item => item.id),
       ...experienceItems.map(item => item.id),
-      ...contactItems.map(item => item.id),
+      ...connectItems.map(item => item.id),
     ]
 
     const randomAnimation = () => {
@@ -74,10 +74,10 @@ export default function HomeClient({ translations }: HomeClientProps) {
 
             {/* Project Sections */}
             <nav aria-label="Project sections">
-              <ProjectSection title={translations.sections.doing} items={doingItems} randomElement={randomElement} />
+              <ProjectSection title={translations.sections.ongoing} items={ongoingItems} randomElement={randomElement} />
               <ProjectSection title={translations.sections.done} items={doneItems} randomElement={randomElement} />
               <ProjectSection title={translations.sections.experience} items={experienceItems} randomElement={randomElement} />
-              <ProjectSection title={translations.sections.contact} items={contactItems} randomElement={randomElement} />
+              <ProjectSection title={translations.sections.connect} items={connectItems} randomElement={randomElement} />
             </nav>
           </div>
         </section>
