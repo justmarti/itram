@@ -1,5 +1,5 @@
 export const ongoingItems = [
-  { id: "neutral-news", text: "neutral-news", href: "/neutralnews" },
+  { id: "facts", text: "facts", href: "https://getfacts.app" },
 ]
 
 export const doneItems = [

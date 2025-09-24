@@ -29,8 +29,8 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
   
-  // Skip neutralnews and API routes for i18n
-  if (pathname.startsWith('/neutralnews') || pathname.startsWith('/api')) {
+  // Skip API routes for i18n
+  if (pathname.startsWith('/api')) {
     const response = NextResponse.next();
     Object.entries(securityHeaders()).forEach(([key, value]) => {
       response.headers.set(key, value);
@@ -81,8 +81,7 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - public folder
-     * - neutralnews (neutralnews routes)
      */
-    '/((?!_next/static|_next/image|favicon.ico|public/|neutralnews).*)',
+    '/((?!_next/static|_next/image|favicon.ico|public/).*)',
   ],
 }; 
