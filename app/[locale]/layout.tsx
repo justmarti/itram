@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { JetBrains_Mono } from 'next/font/google';
 import { SITE_CONFIG } from '@/constants/config';
-import { Locale, getTranslations, generateHreflang } from '@/lib/i18n';
+import { Locale, getTranslations, generateHreflang, parseLocale } from '@/lib/i18n';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -14,11 +14,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 type Props = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale: localeParam } = await params;
+  const locale = parseLocale(localeParam);
   const t = getTranslations(locale);
   const hreflangLinks = generateHreflang('');
 
@@ -117,9 +118,10 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: localeParam } = await params;
+  const locale = parseLocale(localeParam);
   const t = getTranslations(locale);
 
   return (

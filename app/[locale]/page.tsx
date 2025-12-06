@@ -1,12 +1,13 @@
-import { Locale, getTranslations } from "@/lib/i18n"
+import { getTranslations, parseLocale } from "@/lib/i18n"
 import HomeClient from './HomeClient'
 
 interface Props {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }
 
 export default async function LocaleHome({ params }: Props) {
-  const { locale } = await params;
+  const { locale: localeParam } = await params;
+  const locale = parseLocale(localeParam);
   const t = getTranslations(locale);
 
   return <HomeClient translations={t} />;

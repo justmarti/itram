@@ -52,3 +52,11 @@ export function generateHreflang(pathname: string) {
     href: locale === defaultLocale ? pathname : `/${locale}${pathname}`,
   }));
 }
+
+export function isValidLocale(locale: string): locale is Locale {
+  return locales.includes(locale as Locale);
+}
+
+export function parseLocale(locale: string): Locale {
+  return isValidLocale(locale) ? locale : defaultLocale;
+}
